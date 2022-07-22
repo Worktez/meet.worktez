@@ -27,9 +27,14 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -98,9 +103,21 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "meetWorktez:build:production",
+            "firebaseProject": "worktez-demo",
+            "firebaseHostingSite": "worktez-demo"
+          }
         }
       }
     }
   },
-  "defaultProject": "meetWorktez"
+  "cli": {
+    "analytics": "49308a6b-24ec-4687-b0d9-55616434f3d8"
+  }
 }
