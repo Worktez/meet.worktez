@@ -3,7 +3,7 @@
     "worktez-demo": {
       "hosting": {
         "meetWorktez": [
-          "worktez-demo"
+          "meet.worktez.com"
         ]
       }
     }

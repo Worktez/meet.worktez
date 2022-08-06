@@ -18,13 +18,15 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
+import { JitsiComponent } from './body/jitsi/jitsi.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    BodyComponent
+    BodyComponent,
+    JitsiComponent
   ],
   imports: [
     BrowserModule,
