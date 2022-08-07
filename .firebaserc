@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "worktez-demo": {
+      "hosting": {
+        "meetWorktez": [
+          "meet.worktez.com"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "worktez-demo"
+  }
+}
