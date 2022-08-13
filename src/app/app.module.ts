@@ -19,6 +19,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
 import { JitsiComponent } from './body/jitsi/jitsi.component';
+import { HomeComponent } from './body/home/home.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { JitsiComponent } from './body/jitsi/jitsi.component';
     HeaderComponent,
     FooterComponent,
     BodyComponent,
-    JitsiComponent
+    JitsiComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { JitsiComponent } from './body/jitsi/jitsi.component';
   providers: [
     { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['http://localhost:9099'] : undefined },
     { provide: USE_FIRESTORE_EMULATOR, useValue: environment.useEmulators ? ['localhost', '7002'] : undefined },
-    { provide: USE_FUNCTIONS_EMULATOR, useValue: environment.useEmulators ? ['localhost', '7001'] : undefined }
+    { provide: USE_FUNCTIONS_EMULATOR, useValue: environment.useEmulators ? ['localhost', '7001'] : undefined },
+    { provide: REGION, useValue: 'asia-south1' }
   ],
   bootstrap: [AppComponent]
 })
