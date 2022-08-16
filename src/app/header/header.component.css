@@ -1,0 +1,15 @@
+.navbar{
+    box-shadow: 0 7px 6px -6px rgb(185, 180, 180);
+}
+.btn{
+    color: #1266F1;
+    text-decoration: none;
+    border-radius: 20px;
+    border-color: #1266F1;
+}
+#startmeetingBtn{
+    color: #fff;
+}
+#signInBtn{
+    border-color: #fff;
+}

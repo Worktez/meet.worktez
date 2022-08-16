@@ -1,0 +1,20 @@
+#homePage{
+    padding: 70px 30px 80px 55px;
+}
+
+.btn{
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    border-color: #1266F1;
+}
+.signup{
+    padding: 10px 0px 10px 0px;
+}
+
+@media(max-width:900px){
+    #conceptArt{
+        width: auto;
+        height: auto;
+    }
+}
