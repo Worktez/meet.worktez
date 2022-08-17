@@ -12,9 +12,25 @@
     padding: 10px 0px 10px 0px;
 }
 
-@media(max-width:900px){
+#headingLine {
+    width: 80%;
+    height: 85%;
+    color: #383737;
+    font-size: 35px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 3rem;
+}
+
+
+@media only screen and (max-width: 600px) {
+    #homePage{
+        padding: 15px 0px 100px 25px;
+    }
+    #headingLine {
+        font-size: 30px;
+        width: 100%;
+    }
     #conceptArt{
-        width: auto;
-        height: auto;
+        display: none;
     }
 }

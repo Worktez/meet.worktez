@@ -13,3 +13,9 @@
 #signInBtn{
     border-color: #fff;
 }
+@media only screen and (max-width: 600px) {
+   .btn{
+    padding: 0%;
+   }
+   
+}
