@@ -1,11 +1,15 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#" style="font-weight:bold ;">Worktez-Meet</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="navbar-brand px-5" href="#">
+        <img id="conceptArt" src="../../../assets/logo-1.svg" alt="pic" width="15%" height="50%">&nbsp;
+        <img id="conceptArt" src="../../../assets/logo-2.svg" alt="pic" width="50%" height="80%"> 
+      </a>
         <form class="d-flex">
-          <!-- <button class="btn btn-outline-success">LogIn</button> -->
+          <button id="signInBtn" class="btn px-5 me-3">Sign in</button>
+          <button class="btn px-5 btn-light me-3" routerLink="/jitsi">Join a meeting</button>
+          <button id="startmeetingBtn" class="btn btn-primary px-5 me-5" role="button" routerLink="/jitsi">Start a meeting</button>
         </form>
       </div>
-  </nav>
+</nav>
+
+

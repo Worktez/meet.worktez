@@ -1,0 +1,36 @@
+#homePage{
+    padding: 70px 30px 80px 55px;
+}
+
+.btn{
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    border-color: #1266F1;
+}
+.signup{
+    padding: 10px 0px 10px 0px;
+}
+
+#headingLine {
+    width: 80%;
+    height: 85%;
+    color: #383737;
+    font-size: 35px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 3rem;
+}
+
+
+@media only screen and (max-width: 600px) {
+    #homePage{
+        padding: 15px 0px 100px 25px;
+    }
+    #headingLine {
+        font-size: 30px;
+        width: 100%;
+    }
+    #conceptArt{
+        display: none;
+    }
+}
