@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MeetServiceService } from 'src/app/services/meet-service.service';
 declare var JitsiMeetExternalAPI: any;
 
 @Component({
@@ -22,12 +23,15 @@ export class JitsiComponent implements OnInit, AfterViewInit {
   isVideoMuted = false;
 
   constructor(
-      private router: Router
+      private router: Router,
+      private route: ActivatedRoute,
+      public meetService: MeetServiceService
   ) { }
 
   ngOnInit(): void {
-    this.roomId=(this.randomString(12));
-      this.room = this.roomId; // Set your room name
+    this.meetService.isMeetPage = true;
+    let roomid = this.route.snapshot.params['id'];
+      this.room = "Worktez/" + this.roomId;
       this.user = {
           name:null // Set your username
       }
@@ -79,6 +83,7 @@ handleVideoConferenceJoined = async (participant: any) => {
 }
 
 handleVideoConferenceLeft = () => {
+    this.meetService.isMeetPage = false;
     console.log("handleVideoConferenceLeft");
     this.router.navigate(['']);
 }
@@ -102,6 +107,8 @@ getParticipants() {
 executeCommand(command: string) {
   this.api.executeCommand(command);;
   if(command == 'hangup') {
+    console.log("THis is hit in hangup");
+    this.meetService.isMeetPage = false;
       this.router.navigate(['']);
       return;
   }
@@ -115,12 +122,5 @@ executeCommand(command: string) {
   }
 }
 
-randomString(length: number) {
-    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var result = '';
-    for ( var i = 0; i < length; i++ ) {
-        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
-    }
-    return btoa(result);
-}
+
 }

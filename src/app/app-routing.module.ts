@@ -4,8 +4,8 @@ import { HomeComponent } from './body/home/home.component';
 import { JitsiComponent } from './body/jitsi/jitsi.component';
 
 const routes: Routes = [
-  {path: 'jitsi', component: JitsiComponent},
-  {path: '', component:HomeComponent}
+  {path: '', component:HomeComponent},
+  {path: ':id', component: JitsiComponent}
 ];
 
 @NgModule({
