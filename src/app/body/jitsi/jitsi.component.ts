@@ -31,7 +31,7 @@ export class JitsiComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.meetService.isMeetPage = true;
     let roomid = this.route.snapshot.params['id'];
-      this.room = "Worktez/" + this.roomId;
+      this.room = "Worktez/" + roomid;
       this.user = {
           name:null // Set your username
       }
