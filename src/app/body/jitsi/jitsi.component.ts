@@ -16,6 +16,7 @@ export class JitsiComponent implements OnInit, AfterViewInit {
   options: any;
   api: any;
   user: any;
+  roomId : string | undefined;
 
   isAudioMuted = false;
   isVideoMuted = false;
@@ -25,7 +26,8 @@ export class JitsiComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-      this.room = 'Meet-woktez'; // Set your room name
+    this.roomId=(this.randomString(12));
+      this.room = this.roomId; // Set your room name
       this.user = {
           name:null // Set your username
       }
@@ -111,5 +113,14 @@ executeCommand(command: string) {
   if(command == 'toggleVideo') {
       this.isVideoMuted = !this.isVideoMuted;
   }
+}
+
+randomString(length: number) {
+    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = '';
+    for ( var i = 0; i < length; i++ ) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    return btoa(result);
 }
 }
