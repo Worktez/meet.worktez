@@ -1,14 +1,15 @@
 {
+  "projects": {
+    "default": "worktrolly"
+  },
   "targets": {
-    "worktez-demo": {
+    "worktrolly": {
       "hosting": {
-        "meetWorktez": [
-          "meet.worktez.com"
+        "meet-worktez": [
+          "meet-worktez"
         ]
       }
     }
   },
-  "projects": {
-    "default": "worktez-demo"
-  }
+  "etags": {}
 }
