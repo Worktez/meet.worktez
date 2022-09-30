@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule ,FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/compat/functions';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
 import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/compat/firestore';
@@ -11,6 +14,9 @@ import { USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/compat/fun
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatIconModule } from '@angular/material/icon';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -20,6 +26,9 @@ import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
 import { JitsiComponent } from './body/jitsi/jitsi.component';
 import { HomeComponent } from './body/home/home.component';
+import { ScheduleMeetComponent } from'../app/body/schedule-meet/schedule-meet.component';
+import { AddAttendeeComponent } from '../app/body/schedule-meet/add-attendee/add-attendee.component';
+import { LoaderComponent } from './body/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -28,10 +37,17 @@ import { HomeComponent } from './body/home/home.component';
     FooterComponent,
     BodyComponent,
     JitsiComponent,
-    HomeComponent
+    HomeComponent,
+    ScheduleMeetComponent,
+    AddAttendeeComponent,
+    LoaderComponent,
   ],
   imports: [
+    MatIconModule,
+    MatInputModule,
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireFunctionsModule,
     AngularFirestoreModule,
