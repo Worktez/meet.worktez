@@ -5,6 +5,7 @@ import { map, Observable, startWith } from 'rxjs';
 import { Router } from '@angular/router';
 import { PopupHandlerService } from 'src/app/services/services/popup-handler.service';
 import { ValidationService } from 'src/app/services/services/validation.service';
+import { ToolService } from 'src/app/services/services/tool.service';
 
 declare var jQuery:any;
 
@@ -40,9 +41,10 @@ export class ScheduleMeetComponent implements OnInit {
   link: string;
   attendeeEmailsArray: string[] =[]
 
-  constructor(public popupHandlerService: PopupHandlerService,  private functions: AngularFireFunctions, public validationService: ValidationService) { }
+  constructor(public popupHandlerService: PopupHandlerService,  private functions: AngularFireFunctions, public validationService: ValidationService, public toolsService: ToolService) { }
 
   ngOnInit(): void {
+    this.todayDate = this.toolsService.date();
     this.attendeeEmails.setValue("");
     console.log(this.popupHandlerService.scheduleMeetEnabled);
   }
