@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MeetServiceService } from '../services/meet-service.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { MeetServiceService } from '../services/meet-service.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public meetService: MeetServiceService, private router:Router) { }
+  constructor(public meetService: MeetServiceService, private router:Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }

@@ -1,0 +1,145 @@
+<!-- /*********************************************************** 
+* Copyright (C) 2022 
+* Worktez 
+* 
+* This program is free software; you can redistribute it and/or 
+* modify it under the terms of the MIT License 
+* 
+* 
+* This program is distributed in the hope that it will be useful, 
+* but WITHOUT ANY WARRANTY; without even the implied warranty of 
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+* See the MIT License for more details. 
+***********************************************************/ -->
+<button role="button" id="schedulemeetingBtn" class="btn btn-primary px-5 me-5" (click)="scheduleMeet()" data-bs-toggle = "modal" data-bs-target = '#scheduleMeet'>Schedule Meet</button>
+<div class="container-fluid" *ngIf="this.popupHandlerService.scheduleMeetEnabled">
+    <div class="modal fade" id="scheduleMeet" tabindex="-1" role="document" aria-labelledby="scheduleMeet"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content p-2">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-10 col-10">
+                            <h2>Schedule A Meet</h2>
+                        </div>
+                        <div class="col-md-2 col-2 text-right ">
+                            <span class="btn">
+                                <span class= "material-icons" fontSet="material-icons-outlined" (click)="close()"
+                                    title="Close">
+                                    close
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <form #form="ngForm" *ngIf="!showClose">
+                        <div class="row my-2">
+                            <div class="form-group col-md-6 col">
+                                <span class="mr-5 text-muted" style="font-size:0.8rem; padding-left: 5px;" id="label">Title</span>
+                                <input type="text" class="form-control form-control-sm" [(ngModel)]="title"
+                                    [ngModelOptions]="{standalone: true}" placeholder="Enter Task Title">
+                            </div>
+                            <div class="form-group col-md-6 col ml-auto">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem; padding-left: 5px;" id="label">Date</span>
+                                <input class="form-control" type="text" onfocus="(this.type = 'date')"
+                                    onblur="(this.type='text')" [(ngModel)]="date" [ngModelOptions]="{standalone: true}"
+                                    min="{{todayDate}}" placeholder="Select the Date">
+                            </div>
+                        </div>
+                        <div class="form-row mb-2">
+                            <div class="form-group col-md-12 col">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem; padding-left: 5px;" id="label">Description</span>
+                                <textarea type="text" class="form-control form-control-sm" rows="3"
+                                    [(ngModel)]="description" [ngModelOptions]="{standalone: true}"
+                                    placeholder="Write a Task Description..."></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row mb-2">
+                            <div class="col-md-12 col ml-auto">
+                                <div class="dropdown">
+                                    <span class="ml-2 text-secondary" style="font-size:0.8rem; padding-left: 5px;" id="label">Host</span>
+                                    <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                        [formControl]="hostName" id="dropdownMenuButton" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false" placeholder="Enter Host's Name">
+                                    <div id="hostSuggestion" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <ng-container>
+                                            <ng-container>
+                                                <!-- <input 
+                                                    (click)="selectedHost($event)"> -->
+                                            </ng-container>
+                                        </ng-container>
+                                        <ng-template #loader>
+                                            <app-loader></app-loader>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row mb-2">
+                            <div class="col-md-12 col ml-auto">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem; padding-left: 5px;" id="label">Attendee
+                                    Email</span>
+                                <div class="form-row">
+                                    <textarea type="text" autocomplete="off" class="form-control form-control-sm"
+                                        [formControl]="attendeeEmails" placeholder="Enter Attendee's Email's"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-6 col px-2">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem; padding-left: 5px;" id="label">Start Time</span>
+                                <span class="ml-2 text-muted" style="font-size:0.7rem;" id="label">Local 24 Hrs Clock
+                                </span>
+                                <input type="time" class="form-control form-control-sm" [(ngModel)]="estimatedTimeHrs"
+                                    [ngModelOptions]="{standalone: true}" placeholder="Hrs:Mins">
+                            </div>
+                            <div class="col-md-6 col px-2">
+                                <span class="ml-2 text-muted" style="font-size:0.8rem; padding-left: 5px;" id="label">End Time</span>
+                                <span class="ml-2 text-muted" style="font-size:0.7rem;" id="label">Local 24 Hrs Clock
+                                </span>
+                                <input type="time" class="form-control form-control-sm" [(ngModel)]="estimatedTimeHrs1"
+                                    [ngModelOptions]="{standalone: true}" placeholder="Hrs:Mins">
+                            </div>
+                        </div>
+                        <ng-container>
+                        </ng-container>
+
+
+                        <div class="modal-footer mt-1">
+                            <button type="submit" class="btn btn-lg btn-block" id="button" [disabled]="enableLoader"
+                                aria-label="Close" (click)="submit()" style="margin-right: 120px;">Schedule Meet</button>
+                        </div>
+                        <app-loader *ngIf="enableLoader"></app-loader>
+                    </form>
+                    <ng-container *ngIf="showClose">
+                        <div class="row mx-5">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <span class="material-icons" aria-hidden="false" id="SuccessIcon" style="padding-left: 5px;">
+                                    check_circle_outline</span>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
+                                <div class="row" style="font-size: medium;flex-wrap: wrap;">Meet Scheduled Successfully!
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 pt-2 px-4">
+                                <button class="btn btn-success" type="button" id="button" data-dismiss="modal"
+                                    (click)="close()" style="margin-right: 15px;width: 100%;">Close</button>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

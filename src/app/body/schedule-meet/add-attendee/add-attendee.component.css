@@ -1,0 +1,91 @@
+#navbarMenu,
+.modal-header {
+    background-color: #5559D9;
+}
+.modal {
+   width: 30%;
+   position: fixed;
+   left: 40%;
+}
+
+#addAttendeePage,
+.modal-content {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    color: var(--text);
+}
+
+.text {
+    color: #545454;
+}
+
+.head {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#addButton {
+    background-color: #5559D9;
+    color: var#545454;
+    width: 100%;
+    text-align: center;
+}
+
+#addButton:hover {
+    background-color: #67CB45;
+}
+
+select:focus,
+input:focus {
+    box-shadow: none;
+    outline: 0 none;
+    border-color: #dc3226;
+}
+
+.form-email {
+    background-color: #F6F7F9;
+    border: none;
+    color: #545454;
+}
+
+#button {
+    background-color: #5559D9;
+    color: #ffffff;
+}
+
+.btn:hover,
+#button:focus,
+#button:active,
+#button:hover {
+    background-color: #DDDEF4;
+    color: #5559D9;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #67CB45;
+}
+
+.btn-secondary:hover {
+    background-color: none;
+}
+
+.close {
+    color: #545454;
+}
+
+.btn {
+    color: #545454;
+    width:100%;
+}
+
+.btn:hover,
+#logWorkSubmit:hover {
+    background-color: #DDDEF4;
+    color: #5559D9;
+    border: none;
+}
