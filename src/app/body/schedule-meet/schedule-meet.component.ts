@@ -106,9 +106,9 @@ export class ScheduleMeetComponent implements OnInit {
   createNewMeet(){
     const startTime = this.estimatedTimeHrs;
     const endTime = this.estimatedTimeHrs1;
-    const callable = this.functions.httpsCallable('meet/scheduleMeetAtWorktez'); 
+    const callable = this.functions.httpsCallable('meet/scheduleMeet'); 
     console.log(this.attendeeEmailsArray, this.description, this.hostName, startTime, endTime, this.date, this.title);
-    callable({TeamMembers: this.attendeeEmailsArray, Description:this.description, HostName: this.hostName.value, StartTime: startTime, EndTime :endTime, Date: this.date, Title: this.title}).subscribe({
+    callable({TeamMembers: this.attendeeEmailsArray, Description:this.description, HostName: this.hostName.value, StartTime: startTime, EndTime :endTime, Date: this.date, Title: this.title, TeamId: "", OrgDomain: "", Uid: ""}).subscribe({
       next: (data) => {
         console.log(data);
         this.enableLoader = false;
