@@ -46,7 +46,6 @@ export class ScheduleMeetComponent implements OnInit {
   ngOnInit(): void {
     this.todayDate = this.toolsService.date();
     this.attendeeEmails.setValue("");
-    console.log(this.popupHandlerService.scheduleMeetEnabled);
   }
 
   submit(){
@@ -134,8 +133,7 @@ export class ScheduleMeetComponent implements OnInit {
   }
 
   close(){
-    jQuery('#scheduleMeet').modal('hide');
-    jQuery('#form').trigger("reset");
+    this.popupHandlerService.scheduleMeetEnabled=false;
     this.meetScheduled.emit({ completed: true });
     window.location.reload();
   }
