@@ -3,12 +3,8 @@ import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { NgForm, UntypedFormControl } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 import { Router } from '@angular/router';
-import { PopupHandlerService } from 'src/app/services/services/popup-handler.service';
 import { ValidationService } from 'src/app/services/services/validation.service';
 import { ToolService } from 'src/app/services/services/tool.service';
-
-declare var jQuery:any;
-
 @Component({
   selector: 'app-schedule-meet',
   templateUrl: './schedule-meet.component.html',
@@ -40,8 +36,9 @@ export class ScheduleMeetComponent implements OnInit {
   totalEstimatedTime: number;
   link: string;
   attendeeEmailsArray: string[] =[]
+  scheduleMeetEnabled: boolean=false;
 
-  constructor(public popupHandlerService: PopupHandlerService,  private functions: AngularFireFunctions, public validationService: ValidationService, public toolsService: ToolService) { }
+  constructor(private functions: AngularFireFunctions, public validationService: ValidationService, public toolsService: ToolService) { }
 
   ngOnInit(): void {
     this.todayDate = this.toolsService.date();
@@ -74,7 +71,6 @@ export class ScheduleMeetComponent implements OnInit {
 
   addAttendee(){
     this.addAttendeeEnabled = true;
-    console.log(this.addAttendeeEnabled);
   }
 
   selectedHost(item: { selected: boolean; data: any; }){
@@ -106,7 +102,6 @@ export class ScheduleMeetComponent implements OnInit {
     const startTime = this.estimatedTimeHrs;
     const endTime = this.estimatedTimeHrs1;
     const callable = this.functions.httpsCallable('meet/scheduleMeet'); 
-    console.log(this.attendeeEmailsArray, this.description, this.hostName, startTime, endTime, this.date, this.title);
     callable({TeamMembers: this.attendeeEmailsArray, Description:this.description, HostName: this.hostName.value, StartTime: startTime, EndTime :endTime, Date: this.date, Title: this.title, TeamId: "", OrgDomain: "", Uid: ""}).subscribe({
       next: (data) => {
         console.log(data);
@@ -124,7 +119,7 @@ export class ScheduleMeetComponent implements OnInit {
   }
 
   scheduleMeet(){
-    this.popupHandlerService.scheduleMeetEnabled = true;
+    this.scheduleMeetEnabled = true;
   }
 
   generateLink(){
@@ -133,7 +128,7 @@ export class ScheduleMeetComponent implements OnInit {
   }
 
   close(){
-    this.popupHandlerService.scheduleMeetEnabled=false;
+    this.scheduleMeetEnabled=false;
     this.meetScheduled.emit({ completed: true });
     window.location.reload();
   }
