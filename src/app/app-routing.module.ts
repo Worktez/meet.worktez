@@ -5,7 +5,7 @@ import { JitsiComponent } from './body/jitsi/jitsi.component';
 
 const routes: Routes = [
   {path: '', component:HomeComponent},
-  {path: ':id', component: JitsiComponent}
+  {path: ':id', component: JitsiComponent},
 ];
 
 @NgModule({
