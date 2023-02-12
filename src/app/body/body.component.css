@@ -2,3 +2,9 @@
     color: white;
     text-decoration: none;
 }
+
+
+.bg{
+    background: var(--primary-bg);
+    min-height: 100% !important;
+}

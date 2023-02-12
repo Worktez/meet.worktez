@@ -1,5 +1,7 @@
 #homePage{
     padding: 70px 30px 80px 55px;
+    background-color: #fff;
+    height: 100vh !important;
 }
 
 .btn{

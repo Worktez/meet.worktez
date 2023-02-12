@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MeetServiceService } from '../services/meet-service.service';
+import { MeetServiceService } from '../services/meet/meet-service.service';
 
 @Component({
   selector: 'app-footer',

@@ -1,5 +1,14 @@
 .row{
-    margin: 60px 10px 10px 55px;
+    margin: 10px 10px 10px 55px;
+}
+
+.footerbox {
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    background-color: var(--secondary-bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 @media only screen and (max-width: 600px) {
     .row{
