@@ -1,0 +1,126 @@
+<!-- /*********************************************************** 
+* Copyright (C) 2022 
+* Worktez 
+* 
+* This program is free software; you can redistribute it and/or 
+* modify it under the terms of the MIT License 
+* 
+* 
+* This program is distributed in the hope that it will be useful, 
+* but WITHOUT ANY WARRANTY; without even the implied warranty of 
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+* See the MIT License for more details. 
+***********************************************************/ -->
+<div class="container" *ngIf="userExistChecked">
+    <div class="row align-middle m-5">
+        <div class="col-md-4"></div>
+        <div class="col-12 col-sm-6 col-md-4" id="loginContainer">
+            <div class="row text-center">
+                <div [ngClass]="{'col nav-login-tab py-2': true, 'tab-active': activeLogin}" style="cursor:pointer;">
+                    <a [ngClass]="{'nav-item nav-link': true, 'tab-active': activeLogin}" data-toggle="tab"  role="tab" aria-controls="nav-login" aria-selected="false" (click)="changeTab()">Login</a>
+                </div>
+                <div [ngClass]="{'col nav-signup-tab py-2': true, 'tab-active': !activeLogin}" style="cursor:pointer;">
+                    <a [ngClass]="{'nav-item nav-link': true, 'tab-active': !activeLogin}" data-toggle="tab"  role="tab" aria-controls="nav-signup"  aria-selected="false" (click)="changeTab()">Sign Up</a>
+                </div>
+            </div>
+            <div class="row px-4" >
+                <div class="col">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="nav-login-tab" *ngIf="activeLogin">
+                            <h3 class="py-3 ">Welcome <a class="header">Back</a></h3>
+                            <form (submit)="onLoginWithEmail()">
+                                <div class="input-group pb-3">
+                                    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text icons" id="emailHelp">
+                                            <span class="material-icons icons">
+                                                email
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="input-group pb-3">
+                                    <input type="password" class="form-control" placeholder="Enter your password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text icons">
+                                            <span class="material-icons icons">
+                                                vpn_key
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group pb-3">
+                                    <a class="forgotPassword" href="#">Forgot Password?</a>
+                                </div>
+                                <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary" id="button">Login</button>
+                                  </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade show active" id="signup" role="tabpanel" aria-labelledby="nav-signup-tab" *ngIf="!activeLogin">
+                            <h3 class="py-3">Get <a class="header">Started</a>
+                                <p class="forgotPassword pt-2">Sign up for getting started and organize your work!</p>
+                            </h3>
+                            <form (submit)="onSignUpWithEmail()">
+                                <div class="input-group pb-3">
+                                    <input type="text" class="form-control" placeholder="Enter your username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text icons">
+                                            <span class="material-icons icons">
+                                                perm_identity
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group pb-3">
+                                    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text icons">
+                                            <span class="material-icons icons">
+                                                email
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group pb-3">
+                                    <input [type]="showPassword ? 'text':'password'" class="form-control" placeholder="Enter your password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text icons">
+                                            <span class="material-icons icons">
+                                                vpn_key
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-check form-group align-middle">
+                                    <input class="form-check-input forgotPassword" type="checkbox" value="" (click)="togglePassword()" id="flexCheckDefault">
+                                    <label class="form-check-label forgotPassword" for="flexCheckDefault">
+                                        Show Password
+                                    </label>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary" id="button">REGISTER NOW</button>
+                                      </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center py-4">
+                <div class="col">OR</div>
+            </div>
+            <div class="row align-middle px-4 pb-3">
+                <div class="col text-center">
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primar" id="button2" (click)="onSignInWithGoogle()">
+                            <img class="pr-2" src="../../../assets/googleLogo.svg" alt="google icon" srcset="google login icon">
+                            Login with Google
+                        </button>
+                          </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

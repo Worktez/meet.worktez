@@ -1,0 +1,50 @@
+<!-- /*********************************************************** 
+* Copyright (C) 2022 
+* Worktez 
+* 
+* This program is free software; you can redistribute it and/or 
+* modify it under the terms of the MIT License 
+* 
+* 
+* This program is distributed in the hope that it will be useful, 
+* but WITHOUT ANY WARRANTY; without even the implied warranty of 
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+* See the MIT License for more details. 
+***********************************************************/ -->
+<div *ngIf="userLoggedin; else showLoginButton">
+    <div class="row p-2">
+        <div class="col-8 pt-2">
+            {{userData.displayName}}
+        </div>
+        <div class="col-4">
+            <button class="btn btn-primary" id="button" type="button" (click)="logOut()">logout</button>
+        </div>
+
+        <!-- <div class="btn-group">
+            <ng-container *ngIf="userData; else showGooglePhoto">
+                <img src="{{userData.photoURL}}" onerror= "this.src = '../../assets/defaultavatar.jpg' " alt="profile-pic" class="rounded-circle dropdown-toggle" width="25" height="25" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </ng-container>
+            <ng-template #showGooglePhoto>
+                <img src="{{userData.photoURL}}" onerror= "this.src = '../../assets/defaultavatar.jpg' " alt="profile-pic" class="rounded-circle dropdown-toggle" width="25" height="25" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </ng-template>
+            <ul class="dropdown-menu dropdown-menu-right" id="dropdownUserCard">
+                <div class="text-center align-middle">
+                    <ng-container *ngIf="userData; else showGooglePhoto">
+                        <img src="{{userData.photoURL}}" onerror= "this.src = '../../assets/defaultavatar.jpg' " alt="profile-pic" class="rounded-circle" width="50" height="50" >
+                    </ng-container>
+                    <ng-template #showGooglePhoto>
+                        <img src="{{userData.photoURL}}" onerror= "this.src = '../../assets/defaultavatar.jpg' " alt="profile-pic" class="rounded-circle" width="50" height="50" >
+                    </ng-template>
+                    <p class="dropdown-item" id="username">
+                        {{userData.displayName}}
+                    </p>
+                    <hr>
+                </div>
+                <button class="dropdown-item pt-2" id="logout-btn" type="button" (click)="logOut()">Logout</button>
+            </ul>
+        </div> -->
+    </div>
+</div>
+<ng-template #showLoginButton>
+    <button class="btn btn-primary" id="button" type="button" routerLink="/login">Login</button>
+</ng-template>

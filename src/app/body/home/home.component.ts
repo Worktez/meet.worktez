@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MeetServiceService } from 'src/app/services/meet-service.service';
+import { MeetServiceService } from 'src/app/services/meet/meet-service.service';
 
 @Component({
   selector: 'app-home',

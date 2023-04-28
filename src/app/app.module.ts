@@ -26,6 +26,9 @@ import { HomeComponent } from './body/home/home.component';
 import { ScheduleMeetComponent } from'../app/body/schedule-meet/schedule-meet.component';
 import { AddAttendeeComponent } from '../app/body/schedule-meet/add-attendee/add-attendee.component';
 import { LoaderComponent } from './body/loader/loader.component';
+import { LoginComponent } from './body/login/login.component';
+import { LoginHandlerComponent } from './header/login-handler/login-handler.component';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import { LoaderComponent } from './body/loader/loader.component';
     ScheduleMeetComponent,
     AddAttendeeComponent,
     LoaderComponent,
+    LoginComponent,
+    LoginHandlerComponent
   ],
   imports: [
     MatIconModule,
@@ -50,6 +55,8 @@ import { LoaderComponent } from './body/loader/loader.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AppRoutingModule,
+    FormsModule,
+    MatIconModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())
