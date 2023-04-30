@@ -32,6 +32,7 @@
                         </div>
                     </div>
                     <form #form="ngForm" *ngIf="!showClose">
+                        <!-- @TODO Add Validation to Form -->
                         <div class="row my-2">
                             <div class="form-group col-md-6 col">
                                 <span class="mr-5 text-muted" style="font-size:0.8rem; padding-left: 5px;" id="label">Title</span>
@@ -56,21 +57,8 @@
                         <div class="form-row mb-2">
                             <div class="col-md-12 col ml-auto">
                                 <div class="dropdown">
-                                    <span class="ml-2 text-secondary" style="font-size:0.8rem; padding-left: 5px;" id="label">Host</span>
-                                    <input type="text" autocomplete="off" class="form-control form-control-sm"
-                                        [formControl]="hostName" id="dropdownMenuButton" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" placeholder="Enter Host's Name">
-                                    <div id="hostSuggestion" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <ng-container>
-                                            <ng-container>
-                                                <!-- <input 
-                                                    (click)="selectedHost($event)"> -->
-                                            </ng-container>
-                                        </ng-container>
-                                        <ng-template #loader>
-                                            <app-loader></app-loader>
-                                        </ng-template>
-                                    </div>
+                                    <span class="ml-2 text-secondary" style="font-size:0.8rem; padding-left: 5px;" id="label">Host Email</span>
+                                    <input type="text" class="form-control" [value]="userData.email" disabled>
                                 </div>
                             </div>
                         </div>
@@ -79,8 +67,9 @@
                                 <span class="ml-2 text-muted" style="font-size:0.8rem; padding-left: 5px;" id="label">Attendee
                                     Email</span>
                                 <div class="form-row">
+                                    <!-- @TODO add attendee popup not working -->
                                     <textarea type="text" autocomplete="off" class="form-control form-control-sm"
-                                        [formControl]="attendeeEmails" placeholder="Enter Attendee's Email's"
+                                    [formControl]="attendeeEmails" placeholder="Enter Attendee's Email's"
                                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false" rows="5"></textarea>
                                 </div>

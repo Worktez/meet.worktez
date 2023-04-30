@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import firebase from 'firebase/compat/app';
+import { MeetServiceService } from '../meet/meet-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   user:any;
   token:any;
   public userName:string = "";
-  constructor(public afauth: AngularFireAuth, private functions: AngularFireFunctions) { }
+  constructor(public afauth: AngularFireAuth, private functions: AngularFireFunctions, private meetService: MeetServiceService) { }
 
   async createUser(email: string, password: string, username: string) {
     await this.afauth.createUserWithEmailAndPassword(email, password);
@@ -38,15 +38,15 @@ export class AuthService {
       error: (error) => {
         console.error("Error", error);
       },
-      complete: () => console.info('Successful ')
+      complete: () => {
+        this.meetService.getMeetData(this.user.email)
+        console.info('Successful ');
+    }
     });
-
   }
   async googleSignIn() {
     const provider = new firebase.auth.GoogleAuthProvider();
     const credential = await this.afauth.signInWithPopup(provider);
-    console.log(credential.user);
-    
     this.user = credential.user;
     return this.createUserData(credential.user);
   }
