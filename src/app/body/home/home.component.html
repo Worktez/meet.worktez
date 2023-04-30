@@ -1,22 +1,50 @@
-<section id="homePage">
-        <div class="row">
-            <div class="col p-5">
-                <div id="showContent">
-                    <h1 id="headingLine">
-                        Welcome GenZ, collaborate, plan, brainstorm with powerful features of JitSi.
-                    </h1>
-                    <br>
-                    <button class="btn btn-primary px-5" role="button" (click)="createMeet()">Start a meeting</button>
-                    <app-schedule-meet></app-schedule-meet>
-
-                </div>
-                <br> 
-                <!-- <div class="signup">
-                    Don't have an account? <a href="#">Signup</a> 
-                </div> -->
-            </div>
-            <div class="col pe-0 pt-5" id="conceptArt">
-                <img id="conceptArt" src="../../../assets/homePageart.svg" alt="pic" width="70%" height="80%"> 
+<section id="homePage" style="max-height: 85vh;">
+    <div class="row">
+        <div class="col-md-6 p-5">
+            <div id="showContent">
+                <h1 id="headingLine">
+                    Welcome GenZ, collaborate, plan, brainstorm with powerful features of JitSi.
+                </h1>
+                <br>
+                <button class="btn btn-primary px-5" role="button" (click)="createMeet()">Start a meeting</button>
+                <app-schedule-meet *ngIf="userLoggedIn"></app-schedule-meet>
             </div>
         </div>
+        <div class="col-md-6" id="conceptArt" >
+            <img *ngIf="meetService.userMeets.length == 0" id="conceptArt" src="../../../assets/homePageart.svg" alt="pic" width="70%" height="80%">
+            <div *ngIf="meetService.userMeets.length > 0" class="card p-4 mx-5 meetCard">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 style="color: #545454;">Upcoming Meets</h2>
+                    </div>
+                    <div class="col-md-4">
+                       <h5 class="pt-2">{{date}}</h5> 
+                    </div>
+                </div>
+                <hr>
+                <div class="row my-2" *ngFor="let item of meetService.userMeets; let i = index">
+                        <div class="col-md-2 py-3">
+                            {{item.StartTime}}
+                        </div>
+                        <div class="col-md-9 py-3 titleCard" (click)="joinMeet(i)">
+                               {{item.Title}}
+                        </div>
+                        <div class="col-md-1 py-3" *ngIf="meetService.meetDataReady" >
+                            <div class="" *ngIf="email == item.HostEmail">
+                                <span (click)="deletedMeet(i)" style="cursor: pointer;">
+                                    <mat-icon fontSet="material-icons-outlined" class="mt-2 deleteBtn" 
+                                        style="font-size: 20px;">delete</mat-icon>
+                                </span>
+                            </div>
+                            <div class="" *ngIf="email != item.HostEmail">
+                                <span (click)="igonreMeet(i)" style="cursor: pointer;">
+                                    <mat-icon fontSet="material-icons-outlined" class="mt-2 deleteBtn"
+                                        style="font-size: 20px;">close</mat-icon>
+                                </span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

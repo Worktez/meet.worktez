@@ -1,10 +1,9 @@
 import { Component, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { NgForm, UntypedFormControl } from '@angular/forms';
-import { map, Observable, startWith } from 'rxjs';
-import { Router } from '@angular/router';
 import { ValidationService } from 'src/app/services/services/validation.service';
 import { ToolService } from 'src/app/services/services/tool.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-schedule-meet',
   templateUrl: './schedule-meet.component.html',
@@ -37,36 +36,29 @@ export class ScheduleMeetComponent implements OnInit {
   link: string;
   attendeeEmailsArray: string[] =[]
   scheduleMeetEnabled: boolean=false;
-
-  constructor(private functions: AngularFireFunctions, public validationService: ValidationService, public toolsService: ToolService) { }
+  userData:any;
+  constructor(private functions: AngularFireFunctions, public validationService: ValidationService, public toolsService: ToolService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.todayDate = this.toolsService.date();
     this.attendeeEmails.setValue("");
+    this.authService.afauth.user.subscribe({
+      next:(action)=>{
+        if(action)
+        {
+          this.userData = action;
+        }
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    })
   }
 
   submit(){
     const attendeeEmails1 = this.attendeeEmails.value;
     this.attendeeEmailsArray = attendeeEmails1.split(", ");
     this.createNewMeet()
-    // let data = [{ label: "title", value: this.title}, 
-    //             {label: "description", value: this.description}, 
-    //             {label: "startTime" , value: startTime},
-    //             {label: "endTime" , value: endTime} ];
-    //             // {label: "hostName", value: this.hostName.value}, 
-    //             // {label: "date", value: this.date},
-    //             // {label: "teamMembers", value: this.teamMembers} ];
-    //             console.log(data, this.componentName);
-    // var condition = await (this.validationService.checkValidity(this.componentName, data)).then(res => {
-    //   return res;
-    // })    
-    // if(condition){
-    //   console.log("Inputs are valid");
-    //   this.createNewMeet();
-    // } else{
-    //   console.log("Meet not scheduled! Validation error");
-    // }
-    
   }
 
   addAttendee(){
@@ -101,8 +93,9 @@ export class ScheduleMeetComponent implements OnInit {
   createNewMeet(){
     const startTime = this.estimatedTimeHrs;
     const endTime = this.estimatedTimeHrs1;
+    this.attendeeEmailsArray.push(this.userData.email);
     const callable = this.functions.httpsCallable('meet/scheduleMeet'); 
-    callable({TeamMembers: this.attendeeEmailsArray, Description:this.description, HostName: this.hostName.value, StartTime: startTime, EndTime :endTime, Date: this.date, Title: this.title, TeamId: "", OrgDomain: "", Uid: ""}).subscribe({
+    callable({Attendees: this.attendeeEmailsArray, Description:this.description, HostEmail: this.userData.email, StartTime: startTime, EndTime :endTime, Date: this.date, Title: this.title, TeamId: "", OrgDomain: "", Uid: ""}).subscribe({
       next: (data) => {
         console.log(data);
         this.enableLoader = false;
